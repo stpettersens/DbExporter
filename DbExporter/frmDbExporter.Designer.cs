@@ -45,8 +45,11 @@
             this.csql2csvSQLToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setSeparatorsseparatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dBDefineDatabaseOrSchemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iSOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sQLNoCommentsnnocommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mongoDBNoMongoTypesdateoidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mongoDBOutputJSONAsArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblInfo = new System.Windows.Forms.Label();
@@ -195,8 +198,11 @@
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setSeparatorsseparatorToolStripMenuItem,
+            this.dBDefineDatabaseOrSchemaToolStripMenuItem,
             this.iSOToolStripMenuItem,
-            this.sQLNoCommentsnnocommentsToolStripMenuItem});
+            this.sQLNoCommentsnnocommentsToolStripMenuItem,
+            this.mongoDBNoMongoTypesdateoidToolStripMenuItem,
+            this.mongoDBOutputJSONAsArrayToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "O&ptions";
@@ -206,9 +212,19 @@
             this.setSeparatorsseparatorToolStripMenuItem.Name = "setSeparatorsseparatorToolStripMenuItem";
             this.setSeparatorsseparatorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.setSeparatorsseparatorToolStripMenuItem.Size = new System.Drawing.Size(351, 22);
+            this.setSeparatorsseparatorToolStripMenuItem.Size = new System.Drawing.Size(441, 22);
             this.setSeparatorsseparatorToolStripMenuItem.Text = "CSV: Set &separator (-s, --separator)";
             this.setSeparatorsseparatorToolStripMenuItem.Click += new System.EventHandler(this.setSeparatorsseparatorToolStripMenuItem_Click);
+            // 
+            // dBDefineDatabaseOrSchemaToolStripMenuItem
+            // 
+            this.dBDefineDatabaseOrSchemaToolStripMenuItem.Enabled = false;
+            this.dBDefineDatabaseOrSchemaToolStripMenuItem.Name = "dBDefineDatabaseOrSchemaToolStripMenuItem";
+            this.dBDefineDatabaseOrSchemaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D)));
+            this.dBDefineDatabaseOrSchemaToolStripMenuItem.Size = new System.Drawing.Size(441, 22);
+            this.dBDefineDatabaseOrSchemaToolStripMenuItem.Text = "SQL: Define &database or schema (-d, --db) ";
+            this.dBDefineDatabaseOrSchemaToolStripMenuItem.Click += new System.EventHandler(this.dBDefineDatabaseOrSchemaToolStripMenuItem_Click);
             // 
             // iSOToolStripMenuItem
             // 
@@ -216,7 +232,7 @@
             this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
             this.iSOToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Z)));
-            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(351, 22);
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(441, 22);
             this.iSOToolStripMenuItem.Text = "ISO 8601: Use &Z Timezone (-t, --tz)";
             this.iSOToolStripMenuItem.Click += new System.EventHandler(this.iSOToolStripMenuItem_Click);
             // 
@@ -226,9 +242,27 @@
             this.sQLNoCommentsnnocommentsToolStripMenuItem.Name = "sQLNoCommentsnnocommentsToolStripMenuItem";
             this.sQLNoCommentsnnocommentsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.N)));
-            this.sQLNoCommentsnnocommentsToolStripMenuItem.Size = new System.Drawing.Size(351, 22);
-            this.sQLNoCommentsnnocommentsToolStripMenuItem.Text = "SQL: &No comments (-n, ---no-comments)";
+            this.sQLNoCommentsnnocommentsToolStripMenuItem.Size = new System.Drawing.Size(441, 22);
+            this.sQLNoCommentsnnocommentsToolStripMenuItem.Text = "SQL: &No comments (-n, --no-comments)";
             this.sQLNoCommentsnnocommentsToolStripMenuItem.Click += new System.EventHandler(this.sQLNoCommentsnnocommentsToolStripMenuItem_Click);
+            // 
+            // mongoDBNoMongoTypesdateoidToolStripMenuItem
+            // 
+            this.mongoDBNoMongoTypesdateoidToolStripMenuItem.Name = "mongoDBNoMongoTypesdateoidToolStripMenuItem";
+            this.mongoDBNoMongoTypesdateoidToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.T)));
+            this.mongoDBNoMongoTypesdateoidToolStripMenuItem.Size = new System.Drawing.Size(441, 22);
+            this.mongoDBNoMongoTypesdateoidToolStripMenuItem.Text = "MongoDB: No $date or $oid &Types (-n, --no-mongo-types)";
+            this.mongoDBNoMongoTypesdateoidToolStripMenuItem.Click += new System.EventHandler(this.mongoDBNoMongoTypesdateoidToolStripMenuItem_Click);
+            // 
+            // mongoDBOutputJSONAsArrayToolStripMenuItem
+            // 
+            this.mongoDBOutputJSONAsArrayToolStripMenuItem.Name = "mongoDBOutputJSONAsArrayToolStripMenuItem";
+            this.mongoDBOutputJSONAsArrayToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.A)));
+            this.mongoDBOutputJSONAsArrayToolStripMenuItem.Size = new System.Drawing.Size(441, 22);
+            this.mongoDBOutputJSONAsArrayToolStripMenuItem.Text = "MongoDB: Output JSON as &Array (-a, --array)";
+            this.mongoDBOutputJSONAsArrayToolStripMenuItem.Click += new System.EventHandler(this.mongoDBOutputJSONAsArrayToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -429,6 +463,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmongo2csvMongoDBJSONToCSVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dBDefineDatabaseOrSchemaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mongoDBNoMongoTypesdateoidToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mongoDBOutputJSONAsArrayToolStripMenuItem;
     }
 }
 

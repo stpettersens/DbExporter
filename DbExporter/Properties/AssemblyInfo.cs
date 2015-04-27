@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Graphical front-end for ccsv2mongo, csql2mongo, etc.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sam Saint-Pettersen")]
-[assembly: AssemblyProduct("DbExporter")]
+[assembly: AssemblyProduct("Graphical front-end for ccsv2mongo")]
 [assembly: AssemblyCopyright("Copyright ©  2015 Sam Saint-Pettersen")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

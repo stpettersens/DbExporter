@@ -16,6 +16,7 @@ namespace DbExporter
         private string outputFile;
         private bool inputExists;
         private string separator;
+        private string database;
         private const string version = "1.0";
 
         public frmDbExporter()
@@ -24,14 +25,15 @@ namespace DbExporter
             tool = new string[] { "ccsv2mongo", "csql2mongo", "cmongo2sql", "cmongo2csv", "ccsv2sql", "csql2csv" };
             arguments = new string[,] 
             { 
-                { "-l", "-f", "-o", "-s ,", "", "" },
-                { "-l", "-f", "-o", "", "",  ""},
-                { "-l", "-f", "-o", "", "", "" },
-                { "-l", "-f", "-o", "-s ,", "", ""},
-                { "-l", "-f", "-o", "-s ,", "", ""},
-                { "-l", "-f", "-o", "-s ,", "", ""},
+                { "-l", "-f", "-o", "-s ,", "", "", "" },
+                { "-l", "-f", "-o", "", "",  "", ""},
+                { "-l", "-f", "-o", "", "", "", "" },
+                { "-l", "-f", "-o", "-s ,", "", "", ""},
+                { "-l", "-f", "-o", "-s ,", "", "", ""},
+                { "-l", "-f", "-o", "-s ,", "", "", ""},
             };
             separator = ",";
+            database = "";
             selected = 0;
         }
 
@@ -53,6 +55,11 @@ namespace DbExporter
             iSOToolStripMenuItem.Checked = false;
             sQLNoCommentsnnocommentsToolStripMenuItem.Enabled = false;
             sQLNoCommentsnnocommentsToolStripMenuItem.Checked = false;
+            dBDefineDatabaseOrSchemaToolStripMenuItem.Enabled = false;
+            mongoDBNoMongoTypesdateoidToolStripMenuItem.Enabled = false;
+            mongoDBNoMongoTypesdateoidToolStripMenuItem.Checked = false;
+            mongoDBOutputJSONAsArrayToolStripMenuItem.Enabled = false;
+            mongoDBOutputJSONAsArrayToolStripMenuItem.Checked = false;
             txtInput.Clear();
             txtOutput.Clear();
             txtConsole.Clear();
@@ -101,7 +108,8 @@ namespace DbExporter
                 arguments[selected, 2],
                 arguments[selected, 3],
                 arguments[selected, 4],
-                arguments[selected, 5]
+                arguments[selected, 5],
+                arguments[selected, 6]
             };
             Process proc = new Process()
             {
@@ -123,12 +131,12 @@ namespace DbExporter
                 txtConsole.AppendText(proc.StandardOutput.ReadLine() + "\n");
             }
             exitToolStripMenuItem.Enabled = true;
-            fileSystemWatcher.Path = Path.GetDirectoryName(outputFile);
+            /*fileSystemWatcher.Path = Path.GetDirectoryName(outputFile);
             fileSystemWatcher.Filter = Path.GetFileName(outputFile);
             fileSystemWatcher.NotifyFilter = NotifyFilters.FileName;
             fileSystemWatcher.Changed += new FileSystemEventHandler(onFileChanged);
             fileSystemWatcher.Created += new FileSystemEventHandler(onFileChanged);
-            fileSystemWatcher.EnableRaisingEvents = true;
+            fileSystemWatcher.EnableRaisingEvents = true;*/
         }
 
         private void ccsv2mongoCSVToMongoDBJSONToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,6 +151,8 @@ namespace DbExporter
             saveFileDialog.Filter = "MongoDB JSON dumps|*.json";
             ccsv2mongoCSVToMongoDBJSONToolStripMenuItem.Checked = true;
             setSeparatorsseparatorToolStripMenuItem.Enabled = true;
+            mongoDBNoMongoTypesdateoidToolStripMenuItem.Enabled = true;
+            mongoDBOutputJSONAsArrayToolStripMenuItem.Enabled = true;
             btnConvert.Enabled = false;
         }
 
@@ -158,6 +168,8 @@ namespace DbExporter
             saveFileDialog.Filter = "MongoDB JSON dumps|*.json";
             csql2mongoSQLToMongoDBJSONToolStripMenuItem.Checked = true;
             iSOToolStripMenuItem.Enabled = true;
+            mongoDBNoMongoTypesdateoidToolStripMenuItem.Enabled = true;
+            mongoDBOutputJSONAsArrayToolStripMenuItem.Enabled = true;
             btnConvert.Enabled = false;
         }
 
@@ -173,6 +185,7 @@ namespace DbExporter
             saveFileDialog.Filter = "SQL dumps|*.sql";
             cmongo2sqlToolStripMenuItem.Checked = true;
             sQLNoCommentsnnocommentsToolStripMenuItem.Enabled = true;
+            dBDefineDatabaseOrSchemaToolStripMenuItem.Enabled = true;
             btnConvert.Enabled = false;
         }
 
@@ -204,6 +217,7 @@ namespace DbExporter
             ccsv2sqlCSVToSQLToolStripMenuItem.Checked = true;
             setSeparatorsseparatorToolStripMenuItem.Enabled = true;
             sQLNoCommentsnnocommentsToolStripMenuItem.Enabled = true;
+            dBDefineDatabaseOrSchemaToolStripMenuItem.Enabled = true;
             btnConvert.Enabled = false;
         }
 
@@ -242,12 +256,19 @@ namespace DbExporter
         private void setSeparatorsseparatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             separator = Interaction.InputBox("Enter separator character(s) for CSV:", "Set separator", separator);
-            arguments[selected, 3] = "-s " + separator;
+            if (separator.Length > 0)
+            {
+                arguments[selected, 3] = "-s " + separator;
+            }
+            else
+            {
+                arguments[selected, 3] = "";
+            }
         }
 
         private void iSOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (iSOToolStripMenuItem.Checked == true)
+            if (iSOToolStripMenuItem.Checked)
             {
                 arguments[selected, 4] = "";
                 iSOToolStripMenuItem.Checked = false;
@@ -261,7 +282,7 @@ namespace DbExporter
 
         private void sQLNoCommentsnnocommentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (sQLNoCommentsnnocommentsToolStripMenuItem.Checked == true)
+            if (sQLNoCommentsnnocommentsToolStripMenuItem.Checked)
             {
                 arguments[selected, 5] = "";
                 sQLNoCommentsnnocommentsToolStripMenuItem.Checked = false;
@@ -273,9 +294,56 @@ namespace DbExporter
             }
         }
 
+        private void dBDefineDatabaseOrSchemaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.warn)
+            {
+                MessageBox.Show("Don't use this option for SQLite.", "Compatibility warning");
+                Properties.Settings.Default.warn = false;
+                Properties.Settings.Default.Save();
+            }
+            database = Interaction.InputBox("Enter database or schema name for SQL:", "Define database or schema", database);
+            if (database.Length > 0)
+            {
+                arguments[selected, 4] = "-d " + database;
+            }
+            else
+            {
+                arguments[selected, 4] = "";
+            }
+        }
+
+        private void mongoDBNoMongoTypesdateoidToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(mongoDBNoMongoTypesdateoidToolStripMenuItem.Checked)
+            {
+                arguments[selected, 5] = "";
+                mongoDBNoMongoTypesdateoidToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                arguments[selected, 5] = "-n";
+                mongoDBNoMongoTypesdateoidToolStripMenuItem.Checked = true;
+            }
+        }
+
+        private void mongoDBOutputJSONAsArrayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(mongoDBOutputJSONAsArrayToolStripMenuItem.Checked)
+            {
+                arguments[selected, 6] = "";
+                mongoDBOutputJSONAsArrayToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                arguments[selected, 6] = "-a";
+                mongoDBOutputJSONAsArrayToolStripMenuItem.Checked = true;
+            }
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fileSystemWatcher.EnableRaisingEvents = false;
+            //fileSystemWatcher.EnableRaisingEvents = false;
             this.Close();
         }
     }
