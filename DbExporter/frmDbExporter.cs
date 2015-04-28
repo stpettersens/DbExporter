@@ -17,6 +17,7 @@ namespace DbExporter
         private bool inputExists;
         private string separator;
         private string database;
+        private frmAbout frmAbout;
         private const string version = "1.0";
 
         public frmDbExporter()
@@ -35,6 +36,7 @@ namespace DbExporter
             separator = ",";
             database = "";
             selected = 0;
+            frmAbout = new frmAbout();
         }
 
         private void onFileChanged(object sender, FileSystemEventArgs e) 
@@ -248,9 +250,7 @@ namespace DbExporter
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string message = "DbExporter " + version + ".\nGraphical front-end for ccsv2mongo, csql2mongo, etc.\n";
-            message += "Copyright 2015 Sam Saint-Pettersen.";
-            MessageBox.Show(message, "About DbExporter...");
+            frmAbout.ShowDialog();
         }
 
         private void setSeparatorsseparatorToolStripMenuItem_Click(object sender, EventArgs e)
