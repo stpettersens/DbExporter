@@ -48,6 +48,7 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
   File "DbExporter.exe"
+  File "DbExporter.exe.config"
   File "ccsv2mongo.exe"
   File "ccsv2mongo.dll"
   File "ccsv2sql.exe"
@@ -111,6 +112,7 @@ Section Uninstall
   Delete "$INSTDIR\${PRODUCT_NAME}.url"
   Delete "$INSTDIR\uninst.exe"
   Delete "$INSTDIR\DbExporter.exe"
+  Delete "$INSTDIR\DbExporter.exe.config"
   Delete "$INSTDIR\ccsv2mongo.exe"
   Delete "$INSTDIR\ccsv2mongo.dll"
   Delete "$INSTDIR\ccsv2sql.exe"
