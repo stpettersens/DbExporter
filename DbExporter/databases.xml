@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <database>
+    <type>MongoDB</type>
+    <host>localhost</host>
+    <port>27017</port>
+    <auth>False</auth>
+    <user>none</user>
+    <pass>none</pass>
+  </database>
+  <database>
+    <type>MySQL</type>
+    <host>localhost</host>
+    <port>3306</port>
+    <auth>True</auth>
+    <user>root</user>
+    <pass>toor</pass>
+  </database>
+</configuration>

@@ -48,25 +48,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAbout.Designer.cs">
-      <DependentUpon>frmAbout.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DatabaseConfig.cs" />
     <Compile Include="frmDbExporter.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDbExporter.Designer.cs">
       <DependentUpon>frmDbExporter.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogWindow.Designer.cs">
+      <DependentUpon>frmLogWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="DbExporter.cs" />
+    <Compile Include="ModuleLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmDbExporter.resx">
+      <DependentUpon>frmDbExporter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDbExporter.resx">
-      <DependentUpon>frmDbExporter.cs</DependentUpon>
+    <EmbeddedResource Include="frmLogWindow.resx">
+      <DependentUpon>frmLogWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -92,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="database-152091_640.ico" />
+    <Content Include="databases.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

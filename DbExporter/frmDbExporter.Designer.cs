@@ -34,8 +34,12 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inputFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveInputAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportFromMySQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.csql2mongoSQLToMongoDBJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +47,9 @@
             this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ccsv2sqlCSVToSQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.csql2csvSQLToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sqlImportIntoMySQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setSeparatorsseparatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBDefineDatabaseOrSchemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +57,8 @@
             this.sQLNoCommentsnnocommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mongoDBNoMongoTypesdateoidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mongoDBOutputJSONAsArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblInfo = new System.Windows.Forms.Label();
@@ -82,8 +91,10 @@
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.databaseToolStripMenuItem,
             this.toolToolStripMenuItem,
             this.optionsToolStripMenuItem,
+            this.logToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -96,6 +107,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inputFileToolStripMenuItem,
             this.outputFileToolStripMenuItem,
+            this.saveInputAsToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -118,6 +130,14 @@
             this.outputFileToolStripMenuItem.Text = "&Output...";
             this.outputFileToolStripMenuItem.Click += new System.EventHandler(this.outputFileToolStripMenuItem_Click);
             // 
+            // saveInputAsToolStripMenuItem
+            // 
+            this.saveInputAsToolStripMenuItem.Enabled = false;
+            this.saveInputAsToolStripMenuItem.Name = "saveInputAsToolStripMenuItem";
+            this.saveInputAsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.saveInputAsToolStripMenuItem.Text = "Save Input &As...";
+            this.saveInputAsToolStripMenuItem.Click += new System.EventHandler(this.saveInputAsToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -131,6 +151,32 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // databaseToolStripMenuItem
+            // 
+            this.databaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExportMongoDBToolStripMenuItem,
+            this.exportFromMySQLToolStripMenuItem});
+            this.databaseToolStripMenuItem.Enabled = false;
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.databaseToolStripMenuItem.Text = "&Database";
+            // 
+            // ExportMongoDBToolStripMenuItem
+            // 
+            this.ExportMongoDBToolStripMenuItem.Enabled = false;
+            this.ExportMongoDBToolStripMenuItem.Name = "ExportMongoDBToolStripMenuItem";
+            this.ExportMongoDBToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.ExportMongoDBToolStripMenuItem.Text = "Export from &MongoDB (mongoexport)";
+            this.ExportMongoDBToolStripMenuItem.Click += new System.EventHandler(this.ExportFromMongoDBToolStripMenuItem_Click);
+            // 
+            // exportFromMySQLToolStripMenuItem
+            // 
+            this.exportFromMySQLToolStripMenuItem.Enabled = false;
+            this.exportFromMySQLToolStripMenuItem.Name = "exportFromMySQLToolStripMenuItem";
+            this.exportFromMySQLToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.exportFromMySQLToolStripMenuItem.Text = "Export from My&SQL (mysqldump)";
+            this.exportFromMySQLToolStripMenuItem.Click += new System.EventHandler(this.exportFromMySQLToolStripMenuItem_Click);
+            // 
             // toolToolStripMenuItem
             // 
             this.toolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -139,7 +185,10 @@
             this.cmongo2sqlToolStripMenuItem,
             this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem,
             this.ccsv2sqlCSVToSQLToolStripMenuItem,
-            this.csql2csvSQLToCSVToolStripMenuItem});
+            this.csql2csvSQLToCSVToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem,
+            this.sqlImportIntoMySQLToolStripMenuItem});
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
             this.toolToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.toolToolStripMenuItem.Text = "&Tool";
@@ -150,7 +199,7 @@
             this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem.Name = "ccsv2mongoCSVToMongoDBJSONToolStripMenuItem";
             this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D1)));
-            this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem.Size = new System.Drawing.Size(307, 22);
             this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem.Text = "ccsv2mongo (CSV to MongoDB JSON)";
             this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem.Click += new System.EventHandler(this.ccsv2mongoCSVToMongoDBJSONToolStripMenuItem_Click);
             // 
@@ -158,7 +207,7 @@
             // 
             this.csql2mongoSQLToMongoDBJSONToolStripMenuItem.Name = "csql2mongoSQLToMongoDBJSONToolStripMenuItem";
             this.csql2mongoSQLToMongoDBJSONToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D2)));
-            this.csql2mongoSQLToMongoDBJSONToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.csql2mongoSQLToMongoDBJSONToolStripMenuItem.Size = new System.Drawing.Size(307, 22);
             this.csql2mongoSQLToMongoDBJSONToolStripMenuItem.Text = "csql2mongo (SQL to MongoDB JSON)";
             this.csql2mongoSQLToMongoDBJSONToolStripMenuItem.Click += new System.EventHandler(this.csql2mongoSQLToMongoDBJSONToolStripMenuItem_Click);
             // 
@@ -166,7 +215,7 @@
             // 
             this.cmongo2sqlToolStripMenuItem.Name = "cmongo2sqlToolStripMenuItem";
             this.cmongo2sqlToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D3)));
-            this.cmongo2sqlToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.cmongo2sqlToolStripMenuItem.Size = new System.Drawing.Size(307, 22);
             this.cmongo2sqlToolStripMenuItem.Text = "cmongo2sql (MongoDB JSON to SQL)";
             this.cmongo2sqlToolStripMenuItem.Click += new System.EventHandler(this.cmongo2sqlToolStripMenuItem_Click);
             // 
@@ -174,7 +223,7 @@
             // 
             this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem.Name = "cmongo2csvMongoDBJSONToCSVToolStripMenuItem";
             this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D4)));
-            this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem.Size = new System.Drawing.Size(307, 22);
             this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem.Text = "cmongo2csv (MongoDB JSON to CSV)";
             this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem.Click += new System.EventHandler(this.cmongo2csvMongoDBJSONToCSVToolStripMenuItem_Click);
             // 
@@ -182,7 +231,7 @@
             // 
             this.ccsv2sqlCSVToSQLToolStripMenuItem.Name = "ccsv2sqlCSVToSQLToolStripMenuItem";
             this.ccsv2sqlCSVToSQLToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D5)));
-            this.ccsv2sqlCSVToSQLToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.ccsv2sqlCSVToSQLToolStripMenuItem.Size = new System.Drawing.Size(307, 22);
             this.ccsv2sqlCSVToSQLToolStripMenuItem.Text = "ccsv2sql (CSV to SQL)";
             this.ccsv2sqlCSVToSQLToolStripMenuItem.Click += new System.EventHandler(this.ccsv2sqlCSVToSQLToolStripMenuItem_Click);
             // 
@@ -190,9 +239,32 @@
             // 
             this.csql2csvSQLToCSVToolStripMenuItem.Name = "csql2csvSQLToCSVToolStripMenuItem";
             this.csql2csvSQLToCSVToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D6)));
-            this.csql2csvSQLToCSVToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.csql2csvSQLToCSVToolStripMenuItem.Size = new System.Drawing.Size(307, 22);
             this.csql2csvSQLToCSVToolStripMenuItem.Text = "csql2csv (SQL to CSV)";
             this.csql2csvSQLToCSVToolStripMenuItem.Click += new System.EventHandler(this.csql2csvSQLToCSVToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(304, 6);
+            // 
+            // mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem
+            // 
+            this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem.Enabled = false;
+            this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem.Name = "mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem";
+            this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D7)));
+            this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem.Size = new System.Drawing.Size(307, 22);
+            this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem.Text = "mongoimport (Import into MongoDB)";
+            this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem.Click += new System.EventHandler(this.mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem_Click);
+            // 
+            // sqlImportIntoMySQLToolStripMenuItem
+            // 
+            this.sqlImportIntoMySQLToolStripMenuItem.Enabled = false;
+            this.sqlImportIntoMySQLToolStripMenuItem.Name = "sqlImportIntoMySQLToolStripMenuItem";
+            this.sqlImportIntoMySQLToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D8)));
+            this.sqlImportIntoMySQLToolStripMenuItem.Size = new System.Drawing.Size(307, 22);
+            this.sqlImportIntoMySQLToolStripMenuItem.Text = "mysql (Import into MySQL)";
+            this.sqlImportIntoMySQLToolStripMenuItem.Click += new System.EventHandler(this.sqlImportIntoMySQLToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -264,6 +336,21 @@
             this.mongoDBOutputJSONAsArrayToolStripMenuItem.Text = "MongoDB: Output JSON as &Array (-a, --array)";
             this.mongoDBOutputJSONAsArrayToolStripMenuItem.Click += new System.EventHandler(this.mongoDBOutputJSONAsArrayToolStripMenuItem_Click);
             // 
+            // logToolStripMenuItem
+            // 
+            this.logToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logWindowToolStripMenuItem});
+            this.logToolStripMenuItem.Name = "logToolStripMenuItem";
+            this.logToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.logToolStripMenuItem.Text = "&Log";
+            // 
+            // logWindowToolStripMenuItem
+            // 
+            this.logWindowToolStripMenuItem.Name = "logWindowToolStripMenuItem";
+            this.logWindowToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.logWindowToolStripMenuItem.Text = "&Log Window";
+            this.logWindowToolStripMenuItem.Click += new System.EventHandler(this.logWindowToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -288,7 +375,6 @@
             this.lblInfo.Size = new System.Drawing.Size(228, 13);
             this.lblInfo.TabIndex = 2;
             this.lblInfo.Text = "Convert a CSV file to a MongoDB JSON dump.";
-            this.lblInfo.Click += new System.EventHandler(this.label1_Click);
             // 
             // grpInput
             // 
@@ -317,6 +403,7 @@
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(275, 20);
             this.txtInput.TabIndex = 0;
+            this.txtInput.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // grpOutput
             // 
@@ -345,6 +432,7 @@
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.Size = new System.Drawing.Size(275, 20);
             this.txtOutput.TabIndex = 0;
+            this.txtOutput.TextChanged += new System.EventHandler(this.txtOutput_TextChanged);
             // 
             // grpConsole
             // 
@@ -358,10 +446,11 @@
             // 
             // txtConsole
             // 
-            this.txtConsole.Enabled = false;
             this.txtConsole.Location = new System.Drawing.Point(6, 20);
             this.txtConsole.Multiline = true;
             this.txtConsole.Name = "txtConsole";
+            this.txtConsole.ReadOnly = true;
+            this.txtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtConsole.Size = new System.Drawing.Size(340, 116);
             this.txtConsole.TabIndex = 0;
             // 
@@ -413,6 +502,7 @@
             this.Name = "frmDbExporter";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "DbExporter";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDbExporter_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -466,6 +556,15 @@
         private System.Windows.Forms.ToolStripMenuItem dBDefineDatabaseOrSchemaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mongoDBNoMongoTypesdateoidToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mongoDBOutputJSONAsArrayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExportMongoDBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportFromMySQLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mongoimportImportMongoDBJSONToMongoDBServerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sqlImportIntoMySQLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem saveInputAsToolStripMenuItem;
     }
 }
 

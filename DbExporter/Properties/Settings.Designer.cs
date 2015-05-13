@@ -22,17 +22,5 @@ namespace DbExporter.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool warn {
-            get {
-                return ((bool)(this["warn"]));
-            }
-            set {
-                this["warn"] = value;
-            }
-        }
     }
 }
